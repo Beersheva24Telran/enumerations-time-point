@@ -9,8 +9,7 @@ public class TimePoint implements Comparable<TimePoint>{
     }
     @Override
     public int compareTo(TimePoint arg0) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+        return Float.compare(amount, arg0.convert(timeUnit).amount);
     }
     public float getAmount(){
         return amount;
@@ -20,14 +19,16 @@ public class TimePoint implements Comparable<TimePoint>{
     }
     @Override
     public boolean equals(Object obj) {
-        //TODO
-        return false;
+        boolean result = false;
+		if(obj != null && obj instanceof TimePoint timePoint) {
+			result = compareTo(timePoint) == 0;
+		}
+		return result;
     }
-    public TimePoint convert(TimeUnit timeUnit) {
-        //TODO
-        //returns new TimePoint object equaled to the "this" object but
-        //with a gibven timeUnit
-        return null;
+    public TimePoint convert(TimeUnit unit) {
+        //returns new TimePoint with a given TimeUnit
+        float newAmount = amount * timeUnit.getValueOfSeconds() / unit.getValueOfSeconds();
+		return new TimePoint(newAmount, unit);
     }
     public TimePoint with(TimePointAdjuster adjuster) {
         return adjuster.adjust(this);
