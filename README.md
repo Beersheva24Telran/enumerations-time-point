@@ -1,4 +1,4 @@
-# CW 15
+# HW 15 solution
 ## Enum DayOfWeek illustrating basics of Enum in Java
 ## DayOfWeekTest contains examples of DayOfWeek using
 
